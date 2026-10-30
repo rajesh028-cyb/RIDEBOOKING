@@ -1,25 +1,41 @@
 package com.ridebooking.models;
 
 public class Rider {
-    private int id;
+    private int riderId;
     private String name;
-    private String phone;
+    private String phoneNumber;
 
-    public Rider(int id, String name, String phone) {
-        this.id = id;
+    public Rider(int riderId, String name, String phoneNumber) {
+        this.riderId = riderId;
         this.name = name;
-        this.phone = phone;
+        this.phoneNumber = phoneNumber;
+    }
+
+    public int getRiderId() {
+        return riderId;
     }
 
     public int getId() {
-        return id;
+        return riderId;
     }
 
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
     public String getPhone() {
-        return phone;
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 }

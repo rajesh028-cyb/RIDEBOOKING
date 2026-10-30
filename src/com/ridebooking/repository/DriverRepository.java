@@ -7,21 +7,25 @@ import java.util.List;
 public class DriverRepository {
     private List<Driver> drivers = new ArrayList<>();
 
-    public void save(Driver driver) {
+    public void saveDriver(Driver driver) {
         drivers.add(driver);
     }
 
-    public Driver findById(int id) {
+    public void save(Driver driver) {
+        saveDriver(driver);
+    }
+
+    public Driver findDriverById(int id) {
         for (Driver driver : drivers) {
-            if (driver.getId() == id) {
+            if (driver.getDriverId() == id) {
                 return driver;
             }
         }
         return null;
     }
 
-    public List<Driver> findAll() {
-        return drivers;
+    public Driver findById(int id) {
+        return findDriverById(id);
     }
 
     public Driver findAvailableDriver() {
@@ -31,5 +35,13 @@ public class DriverRepository {
             }
         }
         return null;
+    }
+
+    public List<Driver> getAllDrivers() {
+        return drivers;
+    }
+
+    public List<Driver> findAll() {
+        return getAllDrivers();
     }
 }

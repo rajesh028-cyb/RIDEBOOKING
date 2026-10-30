@@ -1,24 +1,28 @@
 package com.ridebooking.models;
 
 public class Trip {
-    private int id;
+    private int tripId;
     private Rider rider;
     private Driver driver;
+    private String pickupLocation;
+    private String dropLocation;
     private double distance;
     private double fare;
-    private String status;         // REQUESTED, ACCEPTED, IN_PROGRESS, COMPLETED
-    private String paymentStatus;  // PENDING, PAID
-    private int rating;            // 0 means not yet rated, 1-5 once rated
+    private String tripStatus; // REQUESTED, ACCEPTED, IN_PROGRESS, COMPLETED
 
-    public Trip(int id, Rider rider, double distance) {
-        this.id = id;
+    public Trip(int tripId, Rider rider, String pickupLocation, String dropLocation, double distance) {
+        this.tripId = tripId;
         this.rider = rider;
+        this.pickupLocation = pickupLocation;
+        this.dropLocation = dropLocation;
         this.distance = distance;
         this.fare = calculateFare(distance);
         this.driver = null;
-        this.status = "REQUESTED";
-        this.paymentStatus = "PENDING"1;
-        this.rating = 0;
+        this.tripStatus = "REQUESTED";
+    }
+
+    public Trip(int tripId, Rider rider, double distance) {
+        this(tripId, rider, "Pickup", "Drop", distance);
     }
 
     public static double calculateFare(double distance) {
@@ -26,12 +30,20 @@ public class Trip {
         return 50.0 + (distance * 12.0);
     }
 
+    public int getTripId() {
+        return tripId;
+    }
+
     public int getId() {
-        return id;
+        return tripId;
     }
 
     public Rider getRider() {
         return rider;
+    }
+
+    public void setRider(Rider rider) {
+        this.rider = rider;
     }
 
     public Driver getDriver() {
@@ -42,35 +54,52 @@ public class Trip {
         this.driver = driver;
     }
 
+    public String getPickupLocation() {
+        return pickupLocation;
+    }
+
+    public void setPickupLocation(String pickupLocation) {
+        this.pickupLocation = pickupLocation;
+    }
+
+    public String getDropLocation() {
+        return dropLocation;
+    }
+
+    public void setDropLocation(String dropLocation) {
+        this.dropLocation = dropLocation;
+    }
+
     public double getDistance() {
         return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+        this.fare = calculateFare(distance);
     }
 
     public double getFare() {
         return fare;
     }
 
+    public void setFare(double fare) {
+        this.fare = fare;
+    }
+
+    public String getTripStatus() {
+        return tripStatus;
+    }
+
     public String getStatus() {
-        return status;
+        return tripStatus;
     }
 
-    public void setStatus(String status) {
-        this.status = status;
+    public void setTripStatus(String tripStatus) {
+        this.tripStatus = tripStatus;
     }
 
-    public String getPaymentStatus() {
-        return paymentStatus;
-    }
-
-    public void setPaymentStatus(String paymentStatus) {
-        this.paymentStatus = paymentStatus;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setStatus(String tripStatus) {
+        this.tripStatus = tripStatus;
     }
 }
